@@ -1,0 +1,17 @@
+{
+  "name": "iframe-chat",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "markdown-it": "^13.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express-session": "^1.17.3",
+    "uuid": "^9.0.0"
+  }
+}
