@@ -1,0 +1,136 @@
+<style>
+:root{
+  --max-width:900px;
+  --bg: #f5f7fa;
+  --user-bg: linear-gradient(135deg,#4aa3ff 0%, #0078d7 100%);
+  --ai-bg: linear-gradient(135deg,#ffffff 0%, #f0f4f8 100%);
+  --user-color: #fff;
+  --ai-color: #111827;
+  --muted: #6b7280;
+  --radius: 16px;
+  --bubble-shadow: 0 6px 18px rgba(20,24,38,0.08);
+  --avatar-size:44px;
+  --gap:12px;
+  font-family: "Inter", "Noto Sans TC", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* 外層 */
+.chat-wrap {
+  background: var(--bg);
+  padding: 28px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* 主要聊天區 */
+.chat {
+  width: 100%;
+  max-width: var(--max-width);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 每一則訊息的容器（左右排列） */
+.msg {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap);
+  width: 100%;
+}
+
+/* AI 在左、User 在右 */
+.msg.ai { justify-content: flex-start; }
+.msg.user { justify-content: flex-end; }
+
+/* 氣泡 */
+.bubble {
+  max-width: 78%;
+  box-shadow: var(--bubble-shadow);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  position: relative;
+  word-wrap: break-word;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* AI 樣式 */
+.msg.ai .bubble {
+  background: var(--ai-bg);
+  color: var(--ai-color);
+  border: 1px solid rgba(15,23,42,0.04);
+}
+
+/* User 樣式 */
+.msg.user .bubble {
+  background: var(--user-bg);
+  color: var(--user-color);
+  box-shadow: 0 8px 22px rgba(3,52,102,0.12);
+}
+
+/* 訊息 meta（時間、角色） */
+.meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* 內容文字的通用設定 */
+.md pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 10px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 14px;
+}
+.md code {
+  background: rgba(0,0,0,0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+.md img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin: 6px 0;
+}
+
+/* 群組化（連續訊息）處理：合併間距 & 隱藏重複 avatar */
+.msg.grouped { margin-top: 4px; }
+.msg.grouped .avatar { opacity: 0; width: 0; margin-right: 0; }
+/*.msg.grouped .bubble { margin-left: calc(var(--avatar-size) * 0.25); }*/
+
+/* 響應處理 */
+@media (max-width:640px){
+  :root { --avatar-size:36px; --radius:12px; }
+  .bubble { max-width: 86%; padding: 10px 12px; font-size:14px; }
+}
+
+/* 可選：連結與代碼區域樣式 */
+.bubble a { color: inherit; text-decoration: underline; }
+.bubble code {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+  background: rgba(0,0,0,0.04);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+/* 可選：打字指示器（方便之後加入互動） */
+.typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.typing .dot {
+  width: 7px; height: 7px; border-radius: 50%; background: rgba(0,0,0,0.2);
+  animation: blink 1s infinite ease-in-out;
+}
+.typing .dot:nth-child(2){ animation-delay: 0.12s; }
+.typing .dot:nth-child(3){ animation-delay: 0.24s; }
+@keyframes blink { 0%, 60%, 100% { opacity: 0.2; transform: translateY(0);} 30% { opacity: 1; transform: translateY(-3px);} }
+</style>
