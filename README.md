@@ -34,6 +34,12 @@ data/chat-20250923-001/
   └─ index.html
 ```
 
+`docker-compose.yml`:
+ - `./app`：掛載你的 Node.js 程式碼
+ - `./data`：存放對話資料與 HTML
+ - ADMIN_USER / ADMIN_PASS：透過 .env 設定帳號密碼
+ - 容器對外端口 3001 → 可以在 Ghost <iframe> 裡面嵌入
+
 `.env`: 
 - 存放簡單登入帳號密碼，例如：
 ```
