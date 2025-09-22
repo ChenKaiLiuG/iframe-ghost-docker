@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>Iframe Chat GUI</title>
+<style>
+  body { font-family: sans-serif; margin:0; padding:0; height:100vh; }
+  #loginScreen, #appScreen { width:100%; height:100%; display:flex; justify-content:center; align-items:center; }
+  #loginScreen { flex-direction:column; }
+  #loginScreen input { margin:4px 0; padding:6px; width:200px; }
+  #loginScreen button { padding:6px 12px; margin-top:6px; }
+
+  #appScreen { display:none; }
+  #sidebar { width: 200px; border-right: 1px solid #ccc; padding:10px; box-sizing:border-box; overflow-y:auto; }
+  #main { flex:1; display:flex; flex-direction:column; }
+  #editor { padding:10px; border-bottom:1px solid #ccc; }
+  #preview { flex:1; padding:10px; overflow-y:auto; background:#f5f7fa; }
+  .bubble { max-width:80%; padding:12px 14px; border-radius:16px; margin-bottom:12px; }
+  .ai { background:#fff; color:#111; border:1px solid #e5e7eb; }
+  .user { background:linear-gradient(135deg,#4aa3ff,#0078d7); color:#fff; }
+  textarea, select, input { width:100%; margin-bottom:6px; box-sizing:border-box; }
+  button { padding:6px 12px; margin-right:6px; margin-bottom:6px; }
+  #htmlArea, #cssArea, #jsArea { width:100%; height:120px; font-family:monospace; margin-bottom:6px; }
+</style>
+</head>
+<body>
+
+<!-- 登入畫面 -->
+<div id="loginScreen">
+  <h2>登入管理界面</h2>
+  <input type="text" id="loginUser" placeholder="帳號">
+  <input type="password" id="loginPass" placeholder="密碼">
+  <button onclick="login()">登入</button>
+  <div id="loginMsg" style="color:red;margin-top:6px;"></div>
+</div>
+
+<!-- 主畫面 -->
+<div id="appScreen">
+  <div id="sidebar">
+    <h3>對話列表</h3>
+    <ul id="chatList"></ul>
+    <button onclick="newChat()">新增對話</button>
+  </div>
+
+  <div id="main">
+    <div id="editor">
+      <select id="role">
+        <option value="user">User</option>
+        <option value="ai">AI</option>
+      </select>
+      <textarea id="content" placeholder="輸入 Markdown 對話"></textarea>
+      <button onclick="addMessage()">新增訊息</button>
+      <button onclick="loadRender()">更新預覽</button>
+    </div>
+
+    <div id="preview"></div>
+
+    <div id="codeEditor">
+      <h4>HTML 原始碼</h4>
+      <textarea id="htmlArea" readonly></textarea>
+      <button onclick="copyHTML()">複製 HTML</button>
+
+      <h4>CSS</h4>
+      <textarea id="cssArea"></textarea>
+      <button onclick="saveCSSJS()">儲存 CSS/JS</button>
+
+      <h4>JS</h4>
+      <textarea id="jsArea"></textarea>
+    </div>
+  </div>
+</div>
+
+<script src="editor.js"></script>
+</body>
+</html>
