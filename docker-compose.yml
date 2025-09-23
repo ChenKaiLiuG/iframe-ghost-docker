@@ -2,17 +2,14 @@ version: "3.9"
 
 services:
   iframe-chat:
-    image: node:20-alpine
+    image: node:20
     container_name: iframe-chat
     restart: unless-stopped
-    working_dir: /app
+    working_dir: usr/src/app
     command: sh -c "npm install && node server.js"
     ports:
       - "3001:3000"  # 對外端口
-    environment:
-      - ADMIN_USER=${ADMIN_USER}
-      - ADMIN_PASS=${ADMIN_PASS}
     volumes:
-      - ./app:/app
-      - ./data:/app/data
-
+      - ./app:/usr/src/app
+      - ./app/chats:/usr/src/app/chats       # 對話資料持久化
+      - ./app/default:/usr/src/app/default   # CSS/JS 預設檔
