@@ -1,5 +1,8 @@
 # iframe-ghost-docker
 
+# ~~這個專案全部作廢，被GPT坑了~~
+實際上如果把js直接硬寫進footer就可以使用，不需要透過第三方軟體幫忙輸出
+
 ## 專案結構
 ```
 iframe-chat/
