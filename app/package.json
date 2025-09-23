@@ -1,6 +1,7 @@
 {
   "name": "iframe-chat",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "description": "Markdown AI chat viewer with GUI and iframe support",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
